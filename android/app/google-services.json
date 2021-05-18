@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "259883623955",
+    "project_id": "plant-6afd9",
+    "storage_bucket": "plant-6afd9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259883623955:android:5e3515d0c27c78105f81e6",
+        "android_client_info": {
+          "package_name": "com.abhishek.plant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "259883623955-2bjn44j87ug44nq5d1cqltlvvfn80lhe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKrSE6Bg9GqGCbeMab9FVqI8hHo2QC08k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "259883623955-2bjn44j87ug44nq5d1cqltlvvfn80lhe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "259883623955-i7fb07jukv5rkh3u6v5psmo89nnaj0pv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.abhishek.plant"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
