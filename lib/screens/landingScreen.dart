@@ -1,101 +1,90 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'RegisterScreen.dart';
+import 'LoginScreen.dart';
 import 'package:google_fonts/google_fonts.dart';
-class LandingPage extends StatefulWidget {
+
+class landingScreen extends StatefulWidget {
   @override
-  _LandingPageState createState() => _LandingPageState();
+  _landingScreenState createState() => _landingScreenState();
 }
 
-class _LandingPageState extends State<LandingPage> {
-  String username;
-  String deviceName;
+class _landingScreenState extends State<landingScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top:70.0,bottom:40),
-            child: Text(
-              "planT",
-              style: GoogleFonts.fredokaOne(
+    return Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+         // mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Spacer(flex: 3,),
+            Padding(
+              padding: const EdgeInsets.only(top: 70.0, bottom: 20),
+              child: Material(
+                child: Text(
+                  "planT",
+                  style: GoogleFonts.fredokaOne(
+                    fontSize: 70,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+            ),
+            Spacer(),
+            Container(
+              decoration: BoxDecoration(
                 color: Colors.green,
+                borderRadius: BorderRadius.circular(20),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical:15.0),
-            child: TextField(
-              textAlign: TextAlign.center,
-              autofocus: true,
-              style: TextStyle(
-                color: Colors.black,
-              ),
-              onChanged: (value){
-                username=value;
-              },
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
-                hintText: 'Enter your full name',
-                hintStyle: TextStyle(
-                  color: Colors.grey,
+              child: RawMaterialButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LandingPage()));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical:15.0,horizontal: 20.0 ),
+                  child: Text(
+                    "Register",
+                    style: GoogleFonts.poppins(
+                      fontSize: 25,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical:15.0),
-            child: TextField(
-              textAlign: TextAlign.center,
-              autofocus: true,
-              style: TextStyle(
-                color: Colors.black,
-              ),
-              onChanged: (value){
-                deviceName=value;
-              },
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+            Center(
+              child: Container(
+                margin: EdgeInsets.symmetric(vertical: 30),
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                hintText: 'Enter your full name',
-                hintStyle: TextStyle(
-                  color: Colors.grey,
+                child: RawMaterialButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LandingPage()));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical:15.0,horizontal: 20.0 ),
+                    child: Text(
+                      "Login",
+                      style: GoogleFonts.poppins(
+                        fontSize: 25,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-          FlatButton(
-            color: Colors.white,
-            child: Text("Register",style: GoogleFonts.fredokaOne(
-              color: Colors.green,
-              fontSize: 25,
-              fontWeight: FontWeight.bold
-            ),),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            onPressed: () async{
-                  if(username==null && deviceName==null){
-                    Scaffold.of(context).showSnackBar(SnackBar(content: Text("All fields must be filled"),)) ;
-                  }
-                  else{
-
-
-                  }
-            },
-          ),
-        ],
-      ),
+            Spacer(flex: 6,),
+          ],
+        )
     );
   }
 }
