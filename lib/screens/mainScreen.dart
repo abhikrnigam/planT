@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-
+import 'AddADeviceScreen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -29,87 +29,94 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       body: Center(
-        child: Column(
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 40.0),
-                  child: Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(40)),
-                      width: 350,
-                      height: 350,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0, right:30,bottom: 10),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(50)),
+                    child: IconButton(
+                      highlightColor: Colors.white,
+                      iconSize: 40,
+                      color: Colors.green,
+                      icon: Icon(Icons.add),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AddADeviceScreen()));
+                      },
                     ),
                   ),
                 ),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 60.0, bottom: 10.0),
-                    child: CircularPercentIndicator(
-                      radius: 250.0,
-                      lineWidth: 40.0,
-                      animation: true,
-                      animationDuration: 1500,
-                      percent: 0.60,
-                      center: new Text(
-                        "70 %",
-                        style: GoogleFonts.fredokaOne(
-                          color: Colors.grey[700],
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(right:8.0),
+                  child: Text(
+                    "Add Device",
+                    style: GoogleFonts.fredokaOne(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ),
+              Stack(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 40.0),
+                    child: Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(40)),
+                        width: 350,
+                        height: 350,
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 60.0, bottom: 10.0),
+                      child: CircularPercentIndicator(
+                        radius: 250.0,
+                        lineWidth: 40.0,
+                        animation: true,
+                        animationDuration: 1500,
+                        percent: 0.85,
+                        center: new Text(
+                          "Sufficient",
+                          style: GoogleFonts.fredokaOne(
+                            color: Colors.grey[700],
+                            fontSize: 30,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
+                        footer: Padding(
+                          padding: const EdgeInsets.only(top: 15.0),
+                          child: new Text("Current Soil Moisture",
+                              style: GoogleFonts.fredokaOne(
+                                color: Colors.grey[700],
+                                fontSize: 25,
+                              )),
+                        ),
+                        circularStrokeCap: CircularStrokeCap.round,
+                        progressColor: Colors.green,
                       ),
-                      footer: Padding(
-                        padding: const EdgeInsets.only(top: 15.0),
-                        child: new Text("Current Soil Moisture",
-                            style: GoogleFonts.fredokaOne(
-                              color: Colors.grey[700],
-                              fontSize: 25,
-                            )),
-                      ),
-                      circularStrokeCap: CircularStrokeCap.round,
-                      progressColor: Colors.green,
                     ),
                   ),
-                ),
-              ],
-            ),
-//            Padding(
-//              padding: const EdgeInsets.only(top:20.0,bottom: 10.0),
-//              child: CircularPercentIndicator(
-//                radius: 250.0,
-//                lineWidth: 40.0,
-//                animation: true,
-//                animationDuration: 1500,
-//                percent: 0.60,
-//                center: new Text(
-//                  "70 %",
-//                  style:
-//                  GoogleFonts.fredokaOne(
-//                    color: Colors.white,
-//                    fontSize: 30,
-//                    fontWeight: FontWeight.bold,
-//                  ),
-//                ),
-//                footer: Padding(
-//                  padding: const EdgeInsets.only(top:15.0),
-//                  child: new Text(
-//                    "Current Soil Moisture",
-//                    style:
-//                    GoogleFonts.fredokaOne(
-//                      color: Colors.white,
-//                      fontSize: 25,
-//                    )
-//                  ),
-//                ),
-//                circularStrokeCap: CircularStrokeCap.round,
-//                progressColor: Colors.white,
-//              ),
-//            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

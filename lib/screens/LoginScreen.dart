@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:plant/screens/mainScreen.dart';
+
+
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -100,14 +103,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   print("All fields must be filled");
                 } else {
                   if (user != null) {
-                    user
-                        .createUserWithEmailAndPassword(
-                        email: username, password: deviceID)
-                        .then((value) => {
-                      print(
-                          "The user is created with username $username and device id=$deviceID")
-                    }).then((value) => {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()))
+                    user.signInWithEmailAndPassword(email: username, password: deviceID).then((value) => {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MainScreen()))
                     });
                   } else {
                     print("Some error occurred. Please try again.");

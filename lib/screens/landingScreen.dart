@@ -66,7 +66,7 @@ class _landingScreenState extends State<landingScreen> {
                 child: RawMaterialButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LandingPage()));
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical:15.0,horizontal: 20.0 ),
