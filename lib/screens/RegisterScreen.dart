@@ -1,10 +1,10 @@
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'LoginScreen.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 
 class LandingPage extends StatefulWidget {
   @override
@@ -12,9 +12,7 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-//  Firebase.initializeApp();
-//  FirebaseApp secondaryApp = Firebase.app('SecondaryApp');
-//  FirebaseAuth auth = FirebaseAuth.instanceFor(app: secondaryApp);
+
   FirebaseAuth user=FirebaseAuth.instance;
   String username;
   String deviceID;

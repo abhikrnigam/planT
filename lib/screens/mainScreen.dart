@@ -1,3 +1,5 @@
+//import 'package:firebase/firebase.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,11 +7,28 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'AddADeviceScreen.dart';
 
 class MainScreen extends StatefulWidget {
+  String currentUser=FirebaseAuth.instance.currentUser.email;
+
+  MainScreen({@required this.currentUser});
+
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
+  String _currentUser;
+
+  void getUser() {
+    _currentUser = widget.currentUser;
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +49,12 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: Center(
         child: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
           child: Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 15.0, right:30,bottom: 10),
+                padding: const EdgeInsets.only(
+                    top: 0.0, right: 30, bottom: 10),
                 child: Align(
                   alignment: Alignment.topRight,
                   child: Container(
@@ -49,7 +70,8 @@ class _MainScreenState extends State<MainScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => AddADeviceScreen()));
+                                builder: (context) =>
+                                    AddADeviceScreen(currentUser:_currentUser)));
                       },
                     ),
                   ),
@@ -58,7 +80,7 @@ class _MainScreenState extends State<MainScreen> {
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(
-                  padding: const EdgeInsets.only(right:8.0),
+                  padding: const EdgeInsets.only(right: 8.0),
                   child: Text(
                     "Add Device",
                     style: GoogleFonts.fredokaOne(

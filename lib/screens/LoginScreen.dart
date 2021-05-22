@@ -104,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 } else {
                   if (user != null) {
                     user.signInWithEmailAndPassword(email: username, password: deviceID).then((value) => {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MainScreen()))
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MainScreen(currentUser: user.currentUser.email,)))
                     });
                   } else {
                     print("Some error occurred. Please try again.");

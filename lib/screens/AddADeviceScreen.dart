@@ -1,40 +1,80 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
-//import 'package:firebase_core/firebase_core.dart';
-//import 'package:firebase/firestore.dart';
+import 'package:plant/screens/mainScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddADeviceScreen extends StatefulWidget {
+  String currentUser;
+
+  AddADeviceScreen({@required this.currentUser});
+
   @override
   _AddADeviceScreenState createState() => _AddADeviceScreenState();
 }
 
 class _AddADeviceScreenState extends State<AddADeviceScreen> {
+  bool deviceAdded = false;
   String deviceID;
+  String _currentUser;
+
+  void setSharedPrefDeviceAdded() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setBool('deviceAdded', true);
+  }
+
+  void getUser() {
+    _currentUser = widget.currentUser;
+  }
+
+  void getBool() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    deviceAdded = sharedPreferences.getBool('deviceAdded');
+    setState(() {});
+  }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          "planT",
-          style: GoogleFonts.fredokaOne(
-              color: Colors.green, fontWeight: FontWeight.bold, fontSize: 40),
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUser();
+    getBool();
+  }
+
+  Widget getWidget() {
+    if (deviceAdded == true) {
+      return Container(
+        color: Colors.white,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20.0),
+            child: Text(
+              "A Device is already added",
+              style: GoogleFonts.fredokaOne(
+                color: Colors.green[400],
+                fontSize: 30,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ),
         ),
-      ),
-      body: Container(
+      );
+    } else {
+      return Container(
         color: Colors.white,
         child: Column(
           children: <Widget>[
             Spacer(),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal:23,vertical: 10),
-              child: Text("Enter your unique device ID to register the device",style: GoogleFonts.fredokaOne(
-                fontSize: 30,
-                fontWeight: FontWeight.w600,
-                color: Colors.green
-              ),),
+              padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 10),
+              child: Text(
+                "Enter your unique device ID to register the device",
+                style: GoogleFonts.fredokaOne(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.green),
+              ),
             ),
             Padding(
               padding:
@@ -74,13 +114,47 @@ class _AddADeviceScreenState extends State<AddADeviceScreen> {
                 borderRadius: BorderRadius.circular(20),
               ),
               onPressed: () async {
-
+                FirebaseFirestore firestore = FirebaseFirestore.instance;
+                firestore
+                    .collection('users')
+                    .doc('$_currentUser')
+                    .set({
+                      "userID": _currentUser,
+                      "deviceID": deviceID,
+                    })
+                    .then(
+                        (value) => {print("The data is uploaded to firestore")}).then((value) => {
+                          setSharedPrefDeviceAdded()
+                })
+                    .then((value) => {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MainScreen()))
+                        });
               },
             ),
-            Spacer(flex: 3,),
+            Spacer(
+              flex: 3,
+            ),
           ],
         ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          "planT",
+          style: GoogleFonts.fredokaOne(
+              color: Colors.green, fontWeight: FontWeight.bold, fontSize: 40),
+        ),
       ),
+      body: getWidget(),
     );
   }
 }
