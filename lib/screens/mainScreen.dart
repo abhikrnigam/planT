@@ -48,31 +48,33 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       body: Center(
-        child: SingleChildScrollView(
-          physics: ClampingScrollPhysics(),
-          child: Column(
+        child: ListView(
+          children: <Widget>[Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 0.0, right: 30, bottom: 10),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(50)),
-                    child: IconButton(
-                      highlightColor: Colors.white,
-                      iconSize: 40,
-                      color: Colors.green,
-                      icon: Icon(Icons.add),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    AddADeviceScreen(currentUser:_currentUser)));
-                      },
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      top: 15.0, right: 30, bottom: 10),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(50)),
+                      child: IconButton(
+                        highlightColor: Colors.white,
+                        iconSize: 40,
+                        color: Colors.green,
+                        icon: Icon(Icons.add),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AddADeviceScreen(currentUser:_currentUser)));
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -139,6 +141,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ],
           ),
+      ],
         ),
       ),
     );
