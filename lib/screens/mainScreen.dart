@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'AddADeviceScreen.dart';
+import 'package:http/http.dart' as http;
 
 class MainScreen extends StatefulWidget {
   String currentUser=FirebaseAuth.instance.currentUser.email;
@@ -16,6 +17,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  dynamic response;
   String _currentUser;
 
   void getUser() {
@@ -27,6 +29,10 @@ class _MainScreenState extends State<MainScreen> {
     // TODO: implement initState
     super.initState();
     getUser();
+  }
+
+  Future<void> getResponse() async{
+    response=await http.get('');
   }
 
   @override
