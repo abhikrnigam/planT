@@ -64,6 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 30),
               child: Material(
                 child: TextField(
+                  obscureText: true,
                   textAlign: TextAlign.center,
                   autofocus: true,
                   style: TextStyle(
@@ -104,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 } else {
                   if (user != null) {
                     user.signInWithEmailAndPassword(email: username, password: deviceID).then((value) => {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MainScreen(currentUser: user.currentUser.email,)))
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MainScreen(currentUser: user.currentUser.email,)))
                     });
                   } else {
                     print("Some error occurred. Please try again.");

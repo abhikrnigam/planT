@@ -67,6 +67,7 @@ class _LandingPageState extends State<LandingPage> {
               padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 30),
               child: Material(
                 child: TextField(
+                  obscureText: true,
                   textAlign: TextAlign.center,
                   autofocus: true,
                   style: TextStyle(
